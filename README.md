@@ -36,5 +36,8 @@ xeranas:
 
 inchadney (http://freesound.org/people/inchadney/):
 
-  * `light_rain_drop.ogg` - CC-0 (http://freesound.org/people/rcproductions54/sounds/265045/)
   * `heavy_rain_drop.ogg` - CC-BY-SA 3.0 (cut from http://freesound.org/people/inchadney/sounds/58835/)
+
+rcproductions54 (http://freesound.org/people/rcproductions54/):
+
+  * `light_rain_drop.ogg` - CC-0 (http://freesound.org/people/rcproductions54/sounds/265045/)
