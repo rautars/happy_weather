@@ -47,7 +47,7 @@ local set_sky_box = function()
 		{r=112, g=110, b=119},
 		{r=65, g=66, b=78},
 		{r=0, g=0, b=0}})
-  	skycolor.active = true
+	skycolor.active = true
 end
 
 local set_rain_sound = function(player) 
@@ -55,12 +55,12 @@ local set_rain_sound = function(player)
 		object = player,
 		max_hear_distance = 2,
 		loop = true,
-  	})
+	})
 end
 
 local remove_rain_sound = function(player)
 	local sound = sound_handlers[player:get_player_name()]
-  	if sound ~= nil then
+	if sound ~= nil then
 		minetest.sound_stop(sound)
 		sound_handlers[player:get_player_name()] = nil
 	end
@@ -117,7 +117,7 @@ local add_wide_range_rain_particle = function(player)
 		minetest.add_particle({
 		  pos = {x=random_pos.x, y=random_pos.y, z=random_pos.z},
 		  velocity = {x=0, y=-10, z=0},
-		  acceleration = {x=0, y=-30, z=0},
+		  acceleration = {x=0, y=-15, z=0},
 		  expirationtime = 5,
 		  size = 30,
 		  collisiondetection = true,
@@ -155,3 +155,15 @@ heavy_rain.manual_trigger_end = function()
 end
 
 happy_weather.register_weather(heavy_rain)
+
+-- ABM for extinguish fire
+minetest.register_abm({
+	nodenames = {"fire:basic_flame"},
+	interval = 4.0,
+	chance = 2,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		if heavy_rain.active and utils.is_outdoor(pos) then
+			minetest.remove_node(pos)
+		end
+	end
+})
