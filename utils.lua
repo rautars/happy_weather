@@ -1,7 +1,17 @@
-utils = {}
+-- 
+-- Happy Weather: Utilities / Helpers
+
+-- License: MIT
+
+-- Credits:
+-- * xeranas
+
+if hw_utils == nil then
+	hw_utils = {}
+end
 
 -- outdoor check based on node light level
-utils.is_outdoor = function(pos, offset_y)
+hw_utils.is_outdoor = function(pos, offset_y)
 	if offset_y == nil then
 		offset_y = 0
 	end
@@ -14,7 +24,7 @@ end
 
 -- checks if player is undewater. This is needed in order to
 -- turn off weather particles generation.
-utils.is_underwater = function(player)
+hw_utils.is_underwater = function(player)
     local ppos = player:getpos()
     local offset = player:get_eye_offset()
     local player_eye_pos = {x = ppos.x + offset.x, 
@@ -29,7 +39,7 @@ end
 
 -- trying to locate position for particles by player look direction for performance reason.
 -- it is costly to generate many particles around player so goal is focus mainly on front view.  
-utils.get_random_pos = function(player, offset)
+hw_utils.get_random_pos = function(player, offset)
   local look_dir = player:get_look_dir()
   local player_pos = player:getpos()
 

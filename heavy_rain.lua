@@ -85,10 +85,10 @@ local add_close_range_rain_particle = function(player)
 		top = 2
 	}
 
-	local random_pos = utils.get_random_pos(player, offset)
-	local offset_y = -1 -- rain drop visual size / 2 + player size / 2
+	local random_pos = hw_utils.get_random_pos(player, offset)
+	local rain_texture_size_offset_y = -1
 
-	if utils.is_outdoor(random_pos, offset_y) then
+	if hw_utils.is_outdoor(random_pos, rain_texture_size_offset_y) then
 		minetest.add_particle({
 		  pos = {x=random_pos.x, y=random_pos.y, z=random_pos.z},
 		  velocity = {x=0, y=-10, z=0},
@@ -111,9 +111,9 @@ local add_wide_range_rain_particle = function(player)
 		top = 8
 	}
 
-	local random_pos = utils.get_random_pos(player, offset)
+	local random_pos = hw_utils.get_random_pos(player, offset)
 
-	if utils.is_outdoor(random_pos) then
+	if hw_utils.is_outdoor(random_pos) then
 		minetest.add_particle({
 		  pos = {x=random_pos.x, y=random_pos.y, z=random_pos.z},
 		  velocity = {x=0, y=-10, z=0},
@@ -130,7 +130,7 @@ local add_wide_range_rain_particle = function(player)
 end
 
 local display_rain_particles = function(player)
-	if utils.is_underwater(player) then
+	if hw_utils.is_underwater(player) then
 		return
 	end
 
@@ -162,7 +162,7 @@ minetest.register_abm({
 	interval = 4.0,
 	chance = 2,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		if heavy_rain.active and utils.is_outdoor(pos) then
+		if heavy_rain.active and hw_utils.is_outdoor(pos) then
 			minetest.remove_node(pos)
 		end
 	end

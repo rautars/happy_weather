@@ -98,9 +98,9 @@ local add_rain_particle = function(player)
 		top = 4
 	}
 
-	local random_pos = utils.get_random_pos(player, offset)
+	local random_pos = hw_utils.get_random_pos(player, offset)
 
-	if utils.is_outdoor(random_pos) then
+	if hw_utils.is_outdoor(random_pos) then
 		minetest.add_particle({
 		  pos = {x=random_pos.x, y=random_pos.y, z=random_pos.z},
 		  velocity = {x=0, y=-10, z=0},
@@ -117,7 +117,7 @@ local add_rain_particle = function(player)
 end
 
 local display_rain_particles = function(player)
-	if utils.is_underwater(player) then
+	if hw_utils.is_underwater(player) then
 		return
 	end
 
