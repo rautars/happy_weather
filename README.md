@@ -4,9 +4,10 @@ A weather mod for Minetest (http://minetest.net/)
 
 Weathers included
 -----------------------
-* light rain
-* heavy rain
-* thunder
+* Light Rain (code light_rain)
+* Heavy Rain (code heavy_rain)
+* Thunder (code thunder)
+* Light Snow (code light_snow)
 
 Commands
 -----------------------
