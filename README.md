@@ -8,6 +8,7 @@ Weathers included
 * Heavy Rain (code heavy_rain)
 * Thunder (code thunder)
 * Light Snow (code light_snow)
+* Snowstorm (code snowstorm)
 
 Commands
 -----------------------
@@ -34,6 +35,9 @@ xeranas:
   * `happy_weather_light_rain_raindrop_1.png` - CC-0
   * `happy_weather_light_rain_raindrop_2.png` - CC-0
   * `happy_weather_light_rain_raindrop_3.png` - CC-0
+  * `happy_weather_light_snow_snowflake_1.png` - CC-0
+  * `happy_weather_light_snow_snowflake_2.png` - CC-0
+  * `happy_weather_light_snow_snowflake_3.png` - CC-0
 
 inchadney (http://freesound.org/people/inchadney/):
 

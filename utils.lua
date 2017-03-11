@@ -65,6 +65,12 @@ hw_utils.get_random_pos = function(player, offset)
     end
   end
 
-  random_pos_y = player_pos.y + offset.top
+  if offset.bottom ~= nil then
+  	random_pos_y = math.random(player_pos.y - offset.bottom, player_pos.y + offset.top)
+  else
+  	random_pos_y = player_pos.y + offset.top
+  end
+
+  
   return {x=random_pos_x, y=random_pos_y, z=random_pos_z}
 end
