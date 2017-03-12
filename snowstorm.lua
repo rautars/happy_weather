@@ -21,6 +21,22 @@ local manual_trigger_end = false
 -- Skycolor layer id
 local SKYCOLOR_LAYER = "happy_weather_snowstorm_sky"
 
+local set_weather_sound = function(player) 
+	return minetest.sound_play("happy_weather_snowstorm", {
+		object = player,
+		max_hear_distance = 2,
+		loop = true,
+	})
+end
+
+local remove_weather_sound = function(player)
+	local sound = sound_handlers[player:get_player_name()]
+	if sound ~= nil then
+		minetest.sound_stop(sound)
+		sound_handlers[player:get_player_name()] = nil
+	end
+end
+
 snowstorm.about_to_start = function(dtime)
 	if manual_trigger_start then
 		manual_trigger_start = false
@@ -51,10 +67,12 @@ local set_sky_box = function()
 end
 
 snowstorm.setup = function(player)
+	sound_handlers[player:get_player_name()] = set_weather_sound(player)
 	set_sky_box()
 end
 
 snowstorm.clear_up = function(player)
+	remove_weather_sound(player)
 	skycolor.remove_layer(SKYCOLOR_LAYER)
 end
 
@@ -119,5 +137,4 @@ snowstorm.manual_trigger_end = function()
 end
 
 happy_weather.register_weather(snowstorm)
-
 

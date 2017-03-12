@@ -38,6 +38,7 @@ xeranas:
   * `happy_weather_light_snow_snowflake_1.png` - CC-0
   * `happy_weather_light_snow_snowflake_2.png` - CC-0
   * `happy_weather_light_snow_snowflake_3.png` - CC-0
+  * `happy_weather_snowstorm.png.png` - CC-0
 
 inchadney (http://freesound.org/people/inchadney/):
 
@@ -46,3 +47,7 @@ inchadney (http://freesound.org/people/inchadney/):
 rcproductions54 (http://freesound.org/people/rcproductions54/):
 
   * `light_rain_drop.ogg` - CC-0 (http://freesound.org/people/rcproductions54/sounds/265045/)
+
+Autistic Lucario
+
+  * `happy_weather_snowstorm.ogg` - CC BY 3.0 (http://freesound.org/people/Autistic%20Lucario/sounds/140054/)
