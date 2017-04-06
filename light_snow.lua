@@ -1,11 +1,10 @@
--- 
+------------------------------
 -- Happy Weather: Light Rain
 
 -- License: MIT
 
--- Credits:
--- * xeranas
-
+-- Credits: xeranas
+------------------------------
 
 local light_snow = {}
 
@@ -19,7 +18,7 @@ local manual_trigger_end = false
 -- Skycolor layer id
 local SKYCOLOR_LAYER = "happy_weather_light_snow_sky"
 
-light_snow.about_to_start = function(dtime)
+light_snow.is_starting = function(dtime, position)
 	if manual_trigger_start then
 		manual_trigger_start = false
 		return true
@@ -28,7 +27,7 @@ light_snow.about_to_start = function(dtime)
 	return false
 end
 
-light_snow.about_to_end = function(dtime)
+light_snow.is_ending = function(dtime)
 	if manual_trigger_end then
 		manual_trigger_end = false
 		return true
@@ -46,11 +45,11 @@ local set_sky_box = function()
   	skycolor.active = true
 end
 
-light_snow.setup = function(player)
+light_snow.add_player = function(player)
 	set_sky_box()
 end
 
-light_snow.clear_up = function(player)
+light_snow.remove_player = function(player)
 	skycolor.remove_layer(SKYCOLOR_LAYER)
 end
 
@@ -101,15 +100,15 @@ local display_rain_particles = function(player)
 	add_rain_particle(player)
 end
 
-light_snow.update = function(dtime, player)
+light_snow.render = function(dtime, player)
 	display_rain_particles(player)
 end
 
-light_snow.manual_trigger_start = function()
+light_snow.start = function()
 	manual_trigger_start = true
 end
 
-light_snow.manual_trigger_end = function()
+light_snow.stop = function()
 	manual_trigger_end = true
 end
 

@@ -1,10 +1,10 @@
--- 
+----------------------------
 -- Happy Weather: Snowfall
 
 -- License: MIT
 
--- Credits:
--- * xeranas
+-- Credits: xeranas
+----------------------------
 
 local snowstorm = {}
 
@@ -37,7 +37,7 @@ local remove_weather_sound = function(player)
 	end
 end
 
-snowstorm.about_to_start = function(dtime)
+snowstorm.is_starting = function(dtime, position)
 	if manual_trigger_start then
 		manual_trigger_start = false
 		return true
@@ -46,7 +46,7 @@ snowstorm.about_to_start = function(dtime)
 	return false
 end
 
-snowstorm.about_to_end = function(dtime)
+snowstorm.is_ending = function(dtime)
 	if manual_trigger_end then
 		manual_trigger_end = false
 		return true
@@ -66,12 +66,12 @@ local set_sky_box = function()
 	skycolor.active = true
 end
 
-snowstorm.setup = function(player)
+snowstorm.add_player = function(player)
 	sound_handlers[player:get_player_name()] = set_weather_sound(player)
 	set_sky_box()
 end
 
-snowstorm.clear_up = function(player)
+snowstorm.remove_player = function(player)
 	remove_weather_sound(player)
 	skycolor.remove_layer(SKYCOLOR_LAYER)
 end
@@ -124,15 +124,15 @@ local display_rain_particles = function(player)
 	end
 end
 
-snowstorm.update = function(dtime, player)
+snowstorm.render = function(dtime, player)
 	display_rain_particles(player)
 end
 
-snowstorm.manual_trigger_start = function()
+snowstorm.start = function()
 	manual_trigger_start = true
 end
 
-snowstorm.manual_trigger_end = function()
+snowstorm.stop = function()
 	manual_trigger_end = true
 end
 

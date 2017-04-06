@@ -1,11 +1,10 @@
--- 
+------------------------------ 
 -- Happy Weather: Light Rain
 
 -- License: MIT
 
--- Credits:
--- * xeranas
-
+-- Credits: xeranas
+------------------------------
 
 local light_rain = {}
 
@@ -22,7 +21,7 @@ local manual_trigger_end = false
 -- Skycolor layer id
 local SKYCOLOR_LAYER = "happy_weather_light_rain_sky"
 
-light_rain.about_to_start = function(dtime)
+light_rain.is_starting = function(dtime, position)
 	if manual_trigger_start then
 		manual_trigger_start = false
 		return true
@@ -31,7 +30,7 @@ light_rain.about_to_start = function(dtime)
 	return false
 end
 
-light_rain.about_to_end = function(dtime)
+light_rain.is_ending = function(dtime)
 	if manual_trigger_end then
 		manual_trigger_end = false
 		return true
@@ -67,12 +66,12 @@ local remove_rain_sound = function(player)
   	end
 end
 
-light_rain.setup = function(player)
+light_rain.add_player = function(player)
 	sound_handlers[player:get_player_name()] = set_rain_sound(player)
 	set_sky_box()
 end
 
-light_rain.clear_up = function(player)
+light_rain.remove_player = function(player)
 	remove_rain_sound(player)
 	skycolor.remove_layer(SKYCOLOR_LAYER)
 end
@@ -124,15 +123,23 @@ local display_rain_particles = function(player)
 	add_rain_particle(player)
 end
 
-light_rain.update = function(dtime, player)
+light_rain.in_area = function(position)
+	if position.y > -10 then
+		return true
+	end
+	print (position.y)
+	return false
+end
+
+light_rain.render = function(dtime, player)
 	display_rain_particles(player)
 end
 
-light_rain.manual_trigger_start = function()
+light_rain.start = function()
 	manual_trigger_start = true
 end
 
-light_rain.manual_trigger_end = function()
+light_rain.stop = function()
 	manual_trigger_end = true
 end
 

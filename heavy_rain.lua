@@ -1,10 +1,10 @@
--- 
+------------------------------
 -- Happy Weather: Heavy Rain
 
 -- License: MIT
 
--- Credits:
--- * xeranas
+-- Credits: xeranas
+------------------------------
 
 local heavy_rain = {}
 
@@ -21,7 +21,7 @@ local manual_trigger_end = false
 -- Skycolor layer id
 local SKYCOLOR_LAYER = "happy_weather_heavy_rain_sky"
 
-heavy_rain.about_to_start = function(dtime)
+heavy_rain.is_starting = function(dtime, position)
 	if manual_trigger_start then
 		manual_trigger_start = false
 		return true
@@ -30,7 +30,7 @@ heavy_rain.about_to_start = function(dtime)
 	return false
 end
 
-heavy_rain.about_to_end = function(dtime)
+heavy_rain.is_ending = function(dtime)
 	if manual_trigger_end then
 		manual_trigger_end = false
 		return true
@@ -66,12 +66,12 @@ local remove_rain_sound = function(player)
 	end
 end
 
-heavy_rain.setup = function(player)
+heavy_rain.add_player = function(player)
 	sound_handlers[player:get_player_name()] = set_rain_sound(player)
 	set_sky_box()
 end
 
-heavy_rain.clear_up = function(player)
+heavy_rain.remove_player = function(player)
 	remove_rain_sound(player)
 	skycolor.remove_layer(SKYCOLOR_LAYER)
 end
@@ -142,15 +142,15 @@ local display_rain_particles = function(player)
 	end
 end
 
-heavy_rain.update = function(dtime, player)
+heavy_rain.render = function(dtime, player)
 	display_rain_particles(player)
 end
 
-heavy_rain.manual_trigger_start = function()
+heavy_rain.start = function()
 	manual_trigger_start = true
 end
 
-heavy_rain.manual_trigger_end = function()
+heavy_rain.stop = function()
 	manual_trigger_end = true
 end
 

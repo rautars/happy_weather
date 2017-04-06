@@ -1,10 +1,10 @@
--- 
+---------------------------------------
 -- Happy Weather: Utilities / Helpers
 
 -- License: MIT
 
--- Credits:
--- * xeranas
+-- Credits: xeranas
+---------------------------------------
 
 if hw_utils == nil then
 	hw_utils = {}

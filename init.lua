@@ -1,4 +1,15 @@
+---------------------------------------
+-- Happy Weather: initialization
+
+-- License: MIT
+
+-- Credits: xeranas
+---------------------------------------
+
 local modpath = minetest.get_modpath("happy_weather");
+
+-- Turn off lightning mod 'auto mode'
+lightning.auto = false
 
 -- Utilities / Helpers
 dofile(modpath.."/utils.lua")
