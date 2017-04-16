@@ -117,7 +117,7 @@ local add_wide_range_rain_particle = function(player)
 	end
 end
 
-local display_rain_particles = function(player)
+local display_particles = function(player)
 	if hw_utils.is_underwater(player) then
 		return
 	end
@@ -129,7 +129,7 @@ local display_rain_particles = function(player)
 end
 
 snowstorm.render = function(dtime, player)
-	display_rain_particles(player)
+	display_particles(player)
 end
 
 snowstorm.start = function()

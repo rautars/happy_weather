@@ -46,22 +46,23 @@ hw_utils.get_random_pos = function(player, offset)
   local random_pos_x = 0
   local random_pos_y = 0
   local random_pos_z = 0
+  local fractional_part = math.random()
 
   if look_dir.x > 0 then
     if look_dir.z > 0 then
-      random_pos_x = math.random(player_pos.x - offset.back, player_pos.x + offset.front)
-      random_pos_z = math.random(player_pos.z - offset.back, player_pos.z + offset.front)
+      random_pos_x = math.random(player_pos.x - offset.back, player_pos.x + offset.front) + fractional_part
+      random_pos_z = math.random(player_pos.z - offset.back, player_pos.z + offset.front) + fractional_part 
     else
-      random_pos_x = math.random(player_pos.x - offset.back, player_pos.x + offset.front)
-      random_pos_z = math.random(player_pos.z - offset.front, player_pos.z + offset.back)
+      random_pos_x = math.random(player_pos.x - offset.back, player_pos.x + offset.front) + fractional_part
+      random_pos_z = math.random(player_pos.z - offset.front, player_pos.z + offset.back) + fractional_part
     end
   else
     if look_dir.z > 0 then
-      random_pos_x = math.random(player_pos.x - offset.front, player_pos.x + offset.back)
-      random_pos_z = math.random(player_pos.z - offset.back, player_pos.z + offset.front)
+      random_pos_x = math.random(player_pos.x - offset.front, player_pos.x + offset.back) + fractional_part
+      random_pos_z = math.random(player_pos.z - offset.back, player_pos.z + offset.front) + fractional_part
     else
-      random_pos_x = math.random(player_pos.x - offset.front, player_pos.x + offset.back)
-      random_pos_z = math.random(player_pos.z - offset.front, player_pos.z + offset.back)
+      random_pos_x = math.random(player_pos.x - offset.front, player_pos.x + offset.back) + fractional_part
+      random_pos_z = math.random(player_pos.z - offset.front, player_pos.z + offset.back) + fractional_part
     end
   end
 

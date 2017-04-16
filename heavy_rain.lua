@@ -86,7 +86,7 @@ local add_close_range_rain_particle = function(player)
 	local offset = {
 		front = 1,
 		back = 0,
-		top = 2
+		top = 6
 	}
 
 	local random_pos = hw_utils.get_random_pos(player, offset)
