@@ -36,21 +36,25 @@ light_snow.is_ending = function(dtime)
 	return false
 end
 
-local set_sky_box = function()
-	skycolor.add_layer(
-		SKYCOLOR_LAYER,
-		{{r=0, g=0, b=0},
+local set_sky_box = function(player_name)
+	local sl = {}
+	sl.layer_type = skylayer.SKY_PLAIN
+	sl.name = SKYCOLOR_LAYER
+	sl.data = {gradient_data={}}
+	sl.data.gradient_data.colors = {
+		{r=0, g=0, b=0},
 		{r=241, g=244, b=249},
-		{r=0, g=0, b=0}})
-  	skycolor.active = true
+		{r=0, g=0, b=0}
+	}
+	skylayer.add_layer(player_name, sl)
 end
 
 light_snow.add_player = function(player)
-	set_sky_box()
+	set_sky_box(player:get_player_name())
 end
 
 light_snow.remove_player = function(player)
-	skycolor.remove_layer(SKYCOLOR_LAYER)
+	skylayer.remove_layer(player:get_player_name(), SKYCOLOR_LAYER)
 end
 
 -- Random texture getter

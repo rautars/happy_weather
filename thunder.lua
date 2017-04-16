@@ -34,24 +34,13 @@ thunder.is_starting = function(dtime)
 		manual_trigger_start = false
 		return true
 	end
-
-	if happy_weather.is_weather_active(thunder_target_weather_code) then
-		local random_roll = math.random(0,100)
-		thunder_weather_next_check = os.time() + thunder_weather_check_delay
-		if random_roll <= thunder_weather_chance then
-	  		return true
-		end
-  	end
+	
 	return false
 end
 
 thunder.is_ending = function(dtime)
 	if manual_trigger_end then
 		manual_trigger_end = false
-		return true
-	end
-
-	if happy_weather.is_weather_active(thunder_target_weather_code) == false then
 		return true
 	end
 

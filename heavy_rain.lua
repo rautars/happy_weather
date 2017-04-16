@@ -39,15 +39,19 @@ heavy_rain.is_ending = function(dtime)
 	return false
 end
 
-local set_sky_box = function()
-	skycolor.add_layer(
-		SKYCOLOR_LAYER,
-		{{r=0, g=0, b=0},
+local set_sky_box = function(player_name)
+	local sl = {}
+	sl.layer_type = skylayer.SKY_PLAIN
+	sl.name = SKYCOLOR_LAYER
+	sl.data = {gradient_data={}}
+	sl.data.gradient_data.colors = {
+		{r=0, g=0, b=0},
 		{r=65, g=66, b=78},
 		{r=112, g=110, b=119},
 		{r=65, g=66, b=78},
-		{r=0, g=0, b=0}})
-	skycolor.active = true
+		{r=0, g=0, b=0}
+	}
+	skylayer.add_layer(player_name, sl)
 end
 
 local set_rain_sound = function(player) 
@@ -68,12 +72,12 @@ end
 
 heavy_rain.add_player = function(player)
 	sound_handlers[player:get_player_name()] = set_rain_sound(player)
-	set_sky_box()
+	set_sky_box(player:get_player_name())
 end
 
 heavy_rain.remove_player = function(player)
 	remove_rain_sound(player)
-	skycolor.remove_layer(SKYCOLOR_LAYER)
+	skylayer.remove_layer(player:get_player_name(), SKYCOLOR_LAYER)
 end
 
 local rain_drop_texture = "happy_weather_heavy_rain_drops.png"
