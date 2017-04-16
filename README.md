@@ -19,7 +19,7 @@ Commands
 Dependencies
 -----------------------
 * [happy_weather_api](https://github.com/xeranas/happy_weather_api) mod-api (used to manage weathers)
-* [skycolor](https://github.com/xeranas/skycolor) mod-api (used to manage sky color)
+* [skylayer](https://github.com/xeranas/skylayer) mod-api (used to manage sky)
 * [lightning](https://github.com/minetest-mods/lightning) mod (used by thunder weather).
 
 
