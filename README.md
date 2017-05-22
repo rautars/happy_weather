@@ -9,12 +9,15 @@ Weathers included
 * Heavy Rain (code heavy_rain)
 * Thunder (code thunder)
 * Light Snow (code light_snow)
+* Snow (code snow)
 * Snowstorm (code snowstorm)
 
 Commands
 -----------------------
-* `start_weather <weather code>` requires `weather_manager` privilege.
-* `stop_weather <weather code>` requires `weather_manager` privilege.
+requires `weather_manager` privilege:
+
+* `start_weather <weather code>` 
+* `stop_weather <weather code>` 
 
 Dependencies
 -----------------------
@@ -52,3 +55,7 @@ rcproductions54 (http://freesound.org/people/rcproductions54/):
 Autistic Lucario
 
   * `happy_weather_snowstorm.ogg` - CC BY 3.0 (http://freesound.org/people/Autistic%20Lucario/sounds/140054/)
+
+uberhuberman
+
+  * `heavy_rain_drop.ogg` - CC BY 3.0 (https://www.freesound.org/people/uberhuberman/sounds/21189/)

@@ -6,10 +6,10 @@
 -- Credits: xeranas
 ------------------------------
 
-local light_rain = {}
+local rain = {}
 
 -- Weather identification code
-light_rain.code = "rain"
+rain.code = "rain"
 
 -- Keeps sound handler references 
 local sound_handlers = {}
@@ -21,7 +21,7 @@ local manual_trigger_end = false
 -- Skycolor layer id
 local SKYCOLOR_LAYER = "happy_weather_rain_sky"
 
-light_rain.is_starting = function(dtime, position)
+rain.is_starting = function(dtime, position)
 	if manual_trigger_start then
 		manual_trigger_start = false
 		return true
@@ -30,7 +30,7 @@ light_rain.is_starting = function(dtime, position)
 	return false
 end
 
-light_rain.is_ending = function(dtime)
+rain.is_ending = function(dtime)
 	if manual_trigger_end then
 		manual_trigger_end = false
 		return true
@@ -55,7 +55,7 @@ local set_sky_box = function(player_name)
 end
 
 local set_rain_sound = function(player) 
-	return minetest.sound_play("heavy_rain_drop", {
+	return minetest.sound_play("rain_drop", {
 		object = player,
 		max_hear_distance = 2,
 		loop = true,
@@ -70,12 +70,12 @@ local remove_rain_sound = function(player)
   	end
 end
 
-light_rain.add_player = function(player)
+rain.add_player = function(player)
 	sound_handlers[player:get_player_name()] = set_rain_sound(player)
 	set_sky_box(player:get_player_name())
 end
 
-light_rain.remove_player = function(player)
+rain.remove_player = function(player)
 	remove_rain_sound(player)
 	skylayer.remove_layer(player:get_player_name(), SKYCOLOR_LAYER)
 end
@@ -103,8 +103,6 @@ local add_rain_particle = function(player)
 
 	local random_pos = hw_utils.get_random_pos(player, offset)
 
-	print ("x: " .. random_pos.x .. " y: " .. random_pos.y .. " z: " .. random_pos.z)
-
 	if hw_utils.is_outdoor(random_pos) then
 		minetest.add_particle({
 		  pos = {x=random_pos.x, y=random_pos.y, z=random_pos.z},
@@ -129,28 +127,27 @@ local display_rain_particles = function(player)
 	add_rain_particle(player)
 end
 
-light_rain.in_area = function(position)
+rain.in_area = function(position)
 	if position.y > -10 then
 		return true
 	end
-	print (position.y)
 	return false
 end
 
 local particles_number_per_update = 10
-light_rain.render = function(dtime, player)
+rain.render = function(dtime, player)
 
 	for i=particles_number_per_update, 1,-1 do
 		display_rain_particles(player)
 	end
 end
 
-light_rain.start = function()
+rain.start = function()
 	manual_trigger_start = true
 end
 
-light_rain.stop = function()
+rain.stop = function()
 	manual_trigger_end = true
 end
 
-happy_weather.register_weather(light_rain)
+happy_weather.register_weather(rain)

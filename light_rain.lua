@@ -131,7 +131,6 @@ light_rain.in_area = function(position)
 	if position.y > -10 then
 		return true
 	end
-	print (position.y)
 	return false
 end
 

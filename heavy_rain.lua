@@ -146,6 +146,13 @@ local display_rain_particles = function(player)
 	end
 end
 
+heavy_rain.in_area = function(position)
+	if position.y > -10 then
+		return true
+	end
+	return false
+end
+
 heavy_rain.render = function(dtime, player)
 	display_rain_particles(player)
 end
@@ -159,15 +166,3 @@ heavy_rain.stop = function()
 end
 
 happy_weather.register_weather(heavy_rain)
-
--- ABM for extinguish fire
-minetest.register_abm({
-	nodenames = {"fire:basic_flame"},
-	interval = 4.0,
-	chance = 2,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		if heavy_rain.active and hw_utils.is_outdoor(pos) then
-			minetest.remove_node(pos)
-		end
-	end
-})
