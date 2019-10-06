@@ -1,3 +1,3 @@
 # Moved to GitLab
 
-https://gitlab.com/zombiebot/happy_weather
+https://gitlab.com/rautars/happy_weather
